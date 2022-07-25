@@ -8,6 +8,7 @@ WORKDIR ${FRPS_HOME}
 COPY frps ${FRPS_EXEC}
 COPY frps.ini .
 
+RUN chmod +x ${FRPS_EXEC}/frps
 EXPOSE 7000
 
 ENTRYPOINT ["frps","-c","./frps.ini"]
