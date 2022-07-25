@@ -8,4 +8,6 @@ WORKDIR ${FRPC_HOME}
 COPY frpc ${FRPC_EXEC}
 COPY frpc.ini .
 
+RUN chmod +x ${FRPC_EXEC}/frpc
+
 ENTRYPOINT ["frpc","-c","./frpc.ini"]
