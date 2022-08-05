@@ -7,12 +7,12 @@
 everything is initial.
 ```shell
 docker pull marchocode/frps
-docker run -d --restart always --network host --name frps frps
+docker run -d --restart always --network host --name frps marchocode/frps
 ```
 
 or you can use custom config file.
 ```shell
-docker run -d --restart always --network host -v `pwd`/frps.ini:/etc/frps/frps.ini --name frps frps
+docker run -d --restart always --network host -v `pwd`/frps.ini:/etc/frps/frps.ini --name frps marchocode/frps
 ```
 
 ### frpc
@@ -24,7 +24,7 @@ vim frpc.ini
 
 ```shell
 docker pull marchocode/frpc
-docker run -d --restart always --network host -v `pwd`/frpc.ini:/etc/frpc/frpc.ini --name frpc frpc
+docker run -d --restart always --network host -v `pwd`/frpc.ini:/etc/frpc/frpc.ini --name frpc marchocode/frpc
 ```
 
 ### China Aliyun Mirrors
