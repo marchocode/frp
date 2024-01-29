@@ -1,13 +1,12 @@
 # frpc 0.44.0
-FROM alpine:3.15
+FROM alpine:latest
 
-ENV FRPC_HOME="/etc/frpc"
-ENV FRPC_EXEC="/usr/bin"
+WORKDIR /frp
 
-WORKDIR ${FRPC_HOME}
-COPY frpc ${FRPC_EXEC}
-COPY frpc.ini .
+RUN wget -O frp_0.53.2_linux_amd64.tar.gz https://github.com/fatedier/frp/releases/download/v0.53.2/frp_0.53.2_linux_amd64.tar.gz && tar -xf frp_0.53.2_linux_amd64.tar.gz && rm -rf frp_0.53.2_linux_amd64.tar.gz
+RUN cp frp_0.53.2_linux_amd64/frpc* /frp
 
-RUN chmod +x ${FRPC_EXEC}/frpc
+COPY enterpoint.sh /
+CMD [ "/frp/frpc -c /frp/frpc.toml" ]
 
-ENTRYPOINT ["frpc","-c","./frpc.ini"]
+ENTRYPOINT [ "/enterpoint.sh" ]
